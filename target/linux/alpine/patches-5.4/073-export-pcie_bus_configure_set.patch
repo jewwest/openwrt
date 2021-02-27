@@ -1,0 +1,13 @@
+Index: linux-5.4.100/drivers/pci/probe.c
+===================================================================
+--- linux-5.4.100.orig/drivers/pci/probe.c
++++ linux-5.4.100/drivers/pci/probe.c
+@@ -2673,7 +2673,7 @@ static void pcie_write_mrrs(struct pci_d
+ 		pci_err(dev, "MRRS was unable to be configured with a safe value.  If problems are experienced, try running with pci=pcie_bus_safe\n");
+ }
+ 
+-static int pcie_bus_configure_set(struct pci_dev *dev, void *data)
++int pcie_bus_configure_set(struct pci_dev *dev, void *data)
+ {
+ 	int mps, orig_mps;
+ 

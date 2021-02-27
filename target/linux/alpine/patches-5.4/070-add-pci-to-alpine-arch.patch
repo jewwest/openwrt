@@ -1,0 +1,17 @@
+Index: linux-5.4.101/arch/arm/Kconfig
+===================================================================
+--- linux-5.4.101.orig/arch/arm/Kconfig
++++ linux-5.4.101/arch/arm/Kconfig
+@@ -568,6 +568,12 @@ config ARCH_ALPINE
+ 	select ARM_HAS_SG_CHAIN
+ 	select ARCH_SUPPORTS_BIG_ENDIAN
+ 	select FORCE_PCI
++	select PCI_HOST_GENERIC
++	select PCI_DOMAINS
++	select PCI_DOMAINS_GENERIC
++	select ARCH_SUPPORTS_MSI
++	select ALPINE_MSI
++	select PCI_MSI_IRQ_DOMAIN
+ 	help
+ 	  This enables support for the Annapurna Labs Alpine V1 boards.
+ 
