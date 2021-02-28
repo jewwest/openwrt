@@ -1,0 +1,22 @@
+Index: linux-5.4.101/drivers/dma/Kconfig
+===================================================================
+--- linux-5.4.101.orig/drivers/dma/Kconfig
++++ linux-5.4.101/drivers/dma/Kconfig
+@@ -669,6 +669,8 @@ source "drivers/dma/sh/Kconfig"
+ 
+ source "drivers/dma/ti/Kconfig"
+ 
++source "drivers/dma/al/Kconfig"
++
+ # clients
+ comment "DMA Clients"
+ 	depends on DMA_ENGINE
+Index: linux-5.4.101/drivers/dma/Makefile
+===================================================================
+--- linux-5.4.101.orig/drivers/dma/Makefile
++++ linux-5.4.101/drivers/dma/Makefile
+@@ -80,3 +80,4 @@ obj-y += mediatek/
+ obj-y += qcom/
+ obj-y += ti/
+ obj-y += xilinx/
++obj-y += al/
