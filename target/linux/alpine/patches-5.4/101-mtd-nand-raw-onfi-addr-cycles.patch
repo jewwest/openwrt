@@ -1,0 +1,24 @@
+Index: linux-5.4.101/drivers/mtd/nand/raw/nand_onfi.c
+===================================================================
+--- linux-5.4.101.orig/drivers/mtd/nand/raw/nand_onfi.c
++++ linux-5.4.101/drivers/mtd/nand/raw/nand_onfi.c
+@@ -294,6 +294,7 @@ int nand_onfi_detect(struct nand_chip *c
+ 	onfi->tR = le16_to_cpu(p->t_r);
+ 	onfi->tCCS = le16_to_cpu(p->t_ccs);
+ 	onfi->async_timing_mode = le16_to_cpu(p->async_timing_mode);
++	onfi->addr_cycles = p->addr_cycles;
+ 	onfi->vendor_revision = le16_to_cpu(p->vendor_revision);
+ 	memcpy(onfi->vendor, p->vendor, sizeof(p->vendor));
+ 	chip->parameters.onfi = onfi;
+Index: linux-5.4.101/include/linux/mtd/onfi.h
+===================================================================
+--- linux-5.4.101.orig/include/linux/mtd/onfi.h
++++ linux-5.4.101/include/linux/mtd/onfi.h
+@@ -171,6 +171,7 @@ struct onfi_params {
+ 	u16 tR;
+ 	u16 tCCS;
+ 	u16 async_timing_mode;
++	u8 addr_cycles;
+ 	u16 vendor_revision;
+ 	u8 vendor[88];
+ };
