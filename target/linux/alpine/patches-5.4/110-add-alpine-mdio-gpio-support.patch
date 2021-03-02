@@ -1,0 +1,30 @@
+Index: linux-5.4.101/drivers/net/phy/Kconfig
+===================================================================
+--- linux-5.4.101.orig/drivers/net/phy/Kconfig
++++ linux-5.4.101/drivers/net/phy/Kconfig
+@@ -206,6 +206,13 @@ config MDIO_XGENE
+ 	  This module provides a driver for the MDIO busses found in the
+ 	  APM X-Gene SoC's.
+ 
++config MDIO_ALPINE_GPIO
++	tristate "Alpine MDIO GPIO bus controller"
++	depends on ARCH_ALPINE
++	help
++	  This module provides a driver for the MDIO GPIO bus found in the
++	  Alpine SoC.
++
+ endif
+ endif
+ 
+Index: linux-5.4.101/drivers/net/phy/Makefile
+===================================================================
+--- linux-5.4.101.orig/drivers/net/phy/Makefile
++++ linux-5.4.101/drivers/net/phy/Makefile
+@@ -56,6 +56,7 @@ obj-$(CONFIG_MDIO_OCTEON)	+= mdio-octeon
+ obj-$(CONFIG_MDIO_SUN4I)	+= mdio-sun4i.o
+ obj-$(CONFIG_MDIO_THUNDER)	+= mdio-thunder.o
+ obj-$(CONFIG_MDIO_XGENE)	+= mdio-xgene.o
++obj-$(CONFIG_MDIO_ALPINE_GPIO)	+= mdio-alpine-gpio.o
+ 
+ obj-$(CONFIG_SFP)		+= sfp.o
+ sfp-obj-$(CONFIG_SFP)		+= sfp-bus.o
