@@ -1,0 +1,24 @@
+--- a/include/asm-generic/barrier.h
++++ b/include/asm-generic/barrier.h
+@@ -73,6 +73,10 @@
+ #define smp_wmb()	__smp_wmb()
+ #endif
+ 
++#ifndef smp_read_barrier_depends
++#define smp_read_barrier_depends()	
++#endif
++
+ #else	/* !CONFIG_SMP */
+ 
+ #ifndef smp_mb
+@@ -87,6 +91,10 @@
+ #define smp_wmb()	barrier()
+ #endif
+ 
++#ifndef smp_read_barrier_depends
++#define smp_read_barrier_depends()	do { } while (0)
++#endif
++
+ #endif	/* CONFIG_SMP */
+ 
+ #ifndef __smp_store_mb

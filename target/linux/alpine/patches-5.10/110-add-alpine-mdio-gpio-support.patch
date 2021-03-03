@@ -1,0 +1,24 @@
+--- a/drivers/net/phy/Kconfig
++++ b/drivers/net/phy/Kconfig
+@@ -393,3 +393,10 @@ endif # PHYLIB
+ config MICREL_KS8995MA
+ 	tristate "Micrel KS8995MA 5-ports 10/100 managed Ethernet switch"
+ 	depends on SPI
++
++config MDIO_ALPINE_GPIO
++	tristate "Alpine MDIO GPIO bus controller"
++	depends on ARCH_ALPINE
++	help
++	  This module provides a driver for the MDIO GPIO bus found in the
++	  Alpine SoC.
+--- a/drivers/net/phy/Makefile
++++ b/drivers/net/phy/Makefile
+@@ -38,7 +38,7 @@ obj-$(CONFIG_RTL8367_PHY)	+= rtl8367.o
+ obj-$(CONFIG_RTL8367B_PHY)	+= rtl8367b.o
+ 
+ obj-$(CONFIG_NETWORK_PHY_TIMESTAMPING) += mii_timestamper.o
+-
++obj-$(CONFIG_MDIO_ALPINE_GPIO)	+= mdio-alpine-gpio.o
+ obj-$(CONFIG_SFP)		+= sfp.o
+ sfp-obj-$(CONFIG_SFP)		+= sfp-bus.o
+ obj-y				+= $(sfp-obj-y) $(sfp-obj-m)

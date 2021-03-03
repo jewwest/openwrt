@@ -1,0 +1,9 @@
+--- a/drivers/net/ethernet/Kconfig
++++ b/drivers/net/ethernet/Kconfig
+@@ -181,5 +181,6 @@ source "drivers/net/ethernet/via/Kconfig
+ source "drivers/net/ethernet/wiznet/Kconfig"
+ source "drivers/net/ethernet/xilinx/Kconfig"
+ source "drivers/net/ethernet/xircom/Kconfig"
++source "drivers/net/ethernet/al/Kconfig"
+ 
+ endif # ETHERNET

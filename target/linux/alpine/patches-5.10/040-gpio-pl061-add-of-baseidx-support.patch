@@ -1,0 +1,24 @@
+--- a/drivers/gpio/gpio-pl061.c
++++ b/drivers/gpio/gpio-pl061.c
+@@ -289,6 +289,8 @@ static int pl061_probe(struct amba_devic
+ 	struct pl061 *pl061;
+ 	struct gpio_irq_chip *girq;
+ 	int ret, irq;
++	unsigned int baseidx = -1; /* GPIO dynamic allocation */
++	const void *ptr;
+ 
+ 	pl061 = devm_kzalloc(dev, sizeof(*pl061), GFP_KERNEL);
+ 	if (pl061 == NULL)
+@@ -301,7 +303,11 @@ static int pl061_probe(struct amba_devic
+ 	raw_spin_lock_init(&pl061->lock);
+ 	pl061->gc.request = gpiochip_generic_request;
+ 	pl061->gc.free = gpiochip_generic_free;
+-	pl061->gc.base = -1;
++		ptr = of_get_property(dev->of_node, "baseidx", NULL);
++	if (ptr)
++		baseidx = be32_to_cpup(ptr);
++
++	pl061->gc.base = baseidx;
+ 	pl061->gc.get_direction = pl061_get_direction;
+ 	pl061->gc.direction_input = pl061_direction_input;
+ 	pl061->gc.direction_output = pl061_direction_output;
